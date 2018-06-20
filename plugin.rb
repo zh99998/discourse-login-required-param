@@ -8,7 +8,7 @@ after_initialize do
     def redirect_to_login_if_required
       return if current_user || (request.format.json? && is_api?)
 
-      if SiteSetting.login_required? || true #/YGOMobile/.match?(request.user_agent)
+      if SiteSetting.login_required? || /YGOMobile/.match?(request.user_agent)
         flash.keep
 
         if SiteSetting.enable_sso?
